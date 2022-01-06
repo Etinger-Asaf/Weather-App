@@ -12,7 +12,7 @@ import classes from "./home.module.css";
 import heart from "../Icons/heart.svg";
 import { apiKey } from "../ApiKey";
 import { userIsClicked } from "../Redux/isUserClickedSlice/isUserClickedSlice";
-
+import { setAddFavoriteCity } from "../Redux/FavoriteSlice/favoriteSlice";
 const Home = () => {
   const [userInput, setUserInput] = useState("");
   const [citySuggestion, setCitySuggestion] = useState([]);
@@ -23,6 +23,7 @@ const Home = () => {
   const { citySuggestionArray } = useSelector((state) => state.autocomplete);
   const { cityInfo } = useSelector((state) => state.autocomplete);
   const { isClicked } = useSelector((state) => state.IsClicked);
+  const { LocalWeather } = useSelector((state) => state.LocalWeather);
 
   const setItIsDayTimeHandler = () => {
     setDays(true);
@@ -70,6 +71,19 @@ const Home = () => {
     }
   };
 
+  const favoriteHandler = () => {
+    // i need the city name today temp and weather text
+    if (cityInfo && LocalWeather && forecast) {
+      const favoriteDisplay = {
+        cityName: cityInfo.cityName,
+        id: cityInfo.locationKey,
+        weatherText: LocalWeather,
+        currentTemp: forecast[0].maximumTemp,
+      };
+      dispatch(setAddFavoriteCity(favoriteDisplay));
+    }
+  };
+
   return (
     <Fragment>
       <div className={classes.autocompleteContainer}>
@@ -94,7 +108,7 @@ const Home = () => {
           Search
         </button>
         {isClicked && (
-          <button className={classes.favoriteBtn}>
+          <button className={classes.favoriteBtn} onClick={favoriteHandler}>
             <img src={heart} />
           </button>
         )}

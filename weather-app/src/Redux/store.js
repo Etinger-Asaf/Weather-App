@@ -4,6 +4,7 @@ import Next5DaysForecastReducer from "./Next5daysForecastSlice/Next5DaysForecast
 import LocalLocationReducer from "./LocalLocationSlice/LocalLocationSlice";
 import LocalCityWeatherReducer from "./LocalCityWeatherSlice/LocalCityWeatherSlice";
 import isUserClickedReducer from "./isUserClickedSlice/isUserClickedSlice";
+import FavoriteSliceReducer from "../Redux/FavoriteSlice/favoriteSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     LocalLocation: LocalLocationReducer,
     LocalWeather: LocalCityWeatherReducer,
     IsClicked: isUserClickedReducer,
+    Favorite: FavoriteSliceReducer,
   },
 });
