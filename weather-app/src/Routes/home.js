@@ -11,6 +11,7 @@ import DisplayLocalWeather from "../Features/LocalWeather/DisplayLocalWeather";
 import classes from "./home.module.css";
 import heart from "../Icons/heart.svg";
 import { apiKey } from "../ApiKey";
+import { userIsClicked } from "../Redux/isUserClickedSlice/isUserClickedSlice";
 
 const Home = () => {
   const [userInput, setUserInput] = useState("");
@@ -21,6 +22,7 @@ const Home = () => {
 
   const { citySuggestionArray } = useSelector((state) => state.autocomplete);
   const { cityInfo } = useSelector((state) => state.autocomplete);
+  const { isClicked } = useSelector((state) => state.IsClicked);
 
   const setItIsDayTimeHandler = () => {
     setDays(true);
@@ -43,6 +45,7 @@ const Home = () => {
     }
 
     dispatch(get5DaysForecast(cityLocationKey, apiKey));
+    dispatch(userIsClicked(true));
   };
 
   useEffect(() => {
@@ -90,9 +93,11 @@ const Home = () => {
         <button className={classes.searchBtn} onClick={onSearchClickHandler}>
           Search
         </button>
-        <button className={classes.favoriteBtn}>
-          <img src={heart} />
-        </button>
+        {isClicked && (
+          <button className={classes.favoriteBtn}>
+            <img src={heart} />
+          </button>
+        )}
       </div>
       <div>
         {/* <LocalWeather /> */}
@@ -100,29 +105,31 @@ const Home = () => {
         <div>
           <Next5DaysForecast day={day} />
         </div>
-        <RechartWeather isItDayTime={day} />
-        <div className={classes.timeBtnContainer}>
-          <button
-            className={
-              day
-                ? [classes.timeBtnLeft] + " " + [classes.activeTimeBtn]
-                : [classes.timeBtnLeft]
-            }
-            onClick={setItIsDayTimeHandler}
-          >
-            Day
-          </button>
-          <button
-            className={
-              day
-                ? [classes.timeBtnRight]
-                : [classes.timeBtnRight] + " " + [classes.activeTimeBtn]
-            }
-            onClick={setItIsNightTimeHandler}
-          >
-            Night
-          </button>
-        </div>
+        {isClicked && <RechartWeather isItDayTime={day} />}
+        {isClicked && (
+          <div className={classes.timeBtnContainer}>
+            <button
+              className={
+                day
+                  ? [classes.timeBtnLeft] + " " + [classes.activeTimeBtn]
+                  : [classes.timeBtnLeft]
+              }
+              onClick={setItIsDayTimeHandler}
+            >
+              Day
+            </button>
+            <button
+              className={
+                day
+                  ? [classes.timeBtnRight]
+                  : [classes.timeBtnRight] + " " + [classes.activeTimeBtn]
+              }
+              onClick={setItIsNightTimeHandler}
+            >
+              Night
+            </button>
+          </div>
+        )}
       </div>
     </Fragment>
   );
