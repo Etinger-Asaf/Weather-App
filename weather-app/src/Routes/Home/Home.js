@@ -2,17 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { sendUserInput } from "../Redux/slices/autocompleteSlice";
-import { get5DaysForecast } from "../Redux/slices/next5DaysForecastSlice";
-import Next5DaysForecast from "../Features/Next5DaysForecast/Next5DaysForecast";
-import RechartWeather from "../Features/RechartWeather/rechartWeather";
-import LocalWeather from "../Features/LocalWeather/LocalWeather";
-import DisplayLocalWeather from "../Features/LocalWeather/DisplayLocalWeather";
-import classes from "./home.module.css";
-import heart from "../Icons/heart.svg";
-import { apiKey } from "../ApiKey";
-import { userIsClicked } from "../Redux/slices/isUserClickedSlice";
-import { setAddFavoriteCity } from "../Redux/slices/favoriteSlice";
+import { sendUserInput } from "../../Redux/slices/autocompleteSlice";
+import { get5DaysForecast } from "../../Redux/slices/next5DaysForecastSlice";
+import Next5DaysForecast from "../../Features/Next5DaysForecast/Next5DaysForecast";
+import RechartWeather from "../../Features/RechartWeather/RechartWeather";
+import DisplayLocalWeather from "../../Features/LocalWeather/DisplayLocalWeather";
+import classes from "./Home.module.css";
+import heart from "../../Icons/heart.svg";
+import { apiKey } from "../../ApiKey";
+import { userIsClicked } from "../../Redux/slices/isUserClickedSlice";
+import { setAddFavoriteCity } from "../../Redux/slices/favoriteSlice";
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -82,6 +82,7 @@ const Home = () => {
         weatherText: LocalWeather,
         currentTemp: forecast[0].maximumTemp,
       };
+      console.log(favoriteDisplay, "favoriteDisplay");
       dispatch(setAddFavoriteCity(favoriteDisplay));
     }
   };
@@ -116,7 +117,6 @@ const Home = () => {
         )}
       </div>
       <div>
-        {/* <LocalWeather /> */}
         {localWeatherDisplay()}
         <div>
           <Next5DaysForecast day={day} />

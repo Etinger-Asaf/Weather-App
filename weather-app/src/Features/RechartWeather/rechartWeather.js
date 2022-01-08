@@ -18,13 +18,13 @@ const RechartWeather = (props) => {
   const renderLineChart = (
     <LineChart
       width={700}
-      height={350}
+      height={210}
       data={chartData}
       className={classes.chart}
-      margin={{ top: 15, right: 40, bottom: 15, left: 15 }}
+      margin={{ top: 15, right: 50, bottom: 15, left: 15 }}
     >
       <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-      <XAxis dataKey="name" dy={10} />
+      <XAxis dataKey="name" dy={12} />
       <YAxis dx={-7} />
     </LineChart>
   );
