@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import classes from "./DisplayLocalWeather.module.css";
-import { getLocalCityWeather } from "../../Redux/slices/LocalCityWeatherSlice";
+import { getLocalCityWeather } from "../../Redux/slices/localCityWeatherSlice";
 import { apiKey } from "../../ApiKey";
 
 const DisplayLocalWeather = () => {

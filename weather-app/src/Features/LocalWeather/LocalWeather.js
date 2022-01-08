@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { apiKey } from "../../ApiKey";
 
-import getLocalWeather from "../../Redux/slices/LocalLocationSlice";
+import getLocalWeather from "../../Redux/slices/localLocationSlice";
 
 const LocalWeather = () => {
   const dispatch = useDispatch();

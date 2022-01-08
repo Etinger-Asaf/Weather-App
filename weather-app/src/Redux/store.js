@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import autocompleteReducer from "./slices/AutocompleteSlice";
-import next5DaysForecastReducer from "./slices/Next5DaysForecastSlice";
-import localLocationReducer from "./slices/LocalLocationSlice";
-import localCityWeatherReducer from "./slices/LocalCityWeatherSlice";
+import autocompleteReducer from "./slices/autocompleteSlice";
+import next5DaysForecastReducer from "./slices/next5DaysForecastSlice";
+import localLocationReducer from "./slices/localLocationSlice";
+import localCityWeatherReducer from "./slices/localCityWeatherSlice";
 import isUserClickedReducer from "./slices/isUserClickedSlice";
 import favoriteSliceReducer from "./slices/favoriteSlice";
 
