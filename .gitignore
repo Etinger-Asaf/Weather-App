@@ -1,0 +1,3 @@
+node_modules
+weather-app/public
+weather-app/src/ApiKey.js

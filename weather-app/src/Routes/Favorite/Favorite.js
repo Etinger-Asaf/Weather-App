@@ -16,6 +16,7 @@ const Favorite = () => {
           <h6>{item.weatherText}</h6>
         </li>
         <button
+          className={classes.btn}
           onClick={() => {
             dispatch(setRemoveFavoriteCity(item.id));
           }}

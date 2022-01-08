@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import Next5DaysForecastDayTime from "./Next5DaysForecastDayTime";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 const Next5DaysForecast = (props) => {
   const { forecast } = useSelector((state) => state.next5DaysForecast);
