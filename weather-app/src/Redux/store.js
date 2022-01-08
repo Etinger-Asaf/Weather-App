@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import autocompleteReducer from "./AutocompleteSlice/AutocompleteSlice";
-import Next5DaysForecastReducer from "./Next5daysForecastSlice/Next5DaysForecastSlice";
-import LocalLocationReducer from "./LocalLocationSlice/LocalLocationSlice";
-import LocalCityWeatherReducer from "./LocalCityWeatherSlice/LocalCityWeatherSlice";
-import isUserClickedReducer from "./isUserClickedSlice/isUserClickedSlice";
-import FavoriteSliceReducer from "../Redux/FavoriteSlice/favoriteSlice";
+import autocompleteReducer from "./slices/AutocompleteSlice";
+import next5DaysForecastReducer from "./slices/Next5DaysForecastSlice";
+import localLocationReducer from "./slices/LocalLocationSlice";
+import localCityWeatherReducer from "./slices/LocalCityWeatherSlice";
+import isUserClickedReducer from "./slices/isUserClickedSlice";
+import favoriteSliceReducer from "./slices/favoriteSlice";
 
 export default configureStore({
   reducer: {
     autocomplete: autocompleteReducer,
-    Next5DaysForecast: Next5DaysForecastReducer,
-    LocalLocation: LocalLocationReducer,
-    LocalWeather: LocalCityWeatherReducer,
-    IsClicked: isUserClickedReducer,
-    Favorite: FavoriteSliceReducer,
+    next5DaysForecast: next5DaysForecastReducer,
+    localLocation: localLocationReducer,
+    localWeather: localCityWeatherReducer,
+    isClicked: isUserClickedReducer,
+    favorite: favoriteSliceReducer,
   },
 });

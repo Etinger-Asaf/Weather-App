@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import classes from "./rechartWeather.module.css";
 const RechartWeather = (props) => {
   const isItDayTime = props.isItDayTime;
-  const { forecast } = useSelector((state) => state.Next5DaysForecast);
+  const { forecast } = useSelector((state) => state.next5DaysForecast);
 
   if (!forecast) {
     return;

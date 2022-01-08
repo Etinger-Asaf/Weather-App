@@ -1,41 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiKey } from "../../ApiKey";
-const LocalLocationSlice = createSlice({
-  name: "LocalLocation",
+
+const localLocationSlice = createSlice({
+  name: "localLocation",
   initialState: {
-    // geoLocation: {
-    //   latitude: "",
-    //   longitude: "",
-    // },
     currentLocationWeather: null,
   },
   reducers: {
-    // setLocalLatitude: (state, action) => {
-    //   state.geoLocation.latitude = action.payload;
-    // },
-    // setLocalLongitude: (state, action) => {
-    //   state.geoLocation.longitude = action.payload;
-    // },
     setCurrentLocationWeatherData: (state, action) => {
       state.currentLocationWeather = action.payload;
     },
   },
 });
 
-export const {
-  setCurrentLocationWeatherData,
-  // setLocalLatitude,
-  // setLocalLongitude,
-} = LocalLocationSlice.actions;
+export const { setCurrentLocationWeatherData } = localLocationSlice.actions;
 
-export default LocalLocationSlice.reducer;
-
-// export const getLocalCoords = (latitude, longitude) => {
-//   return async (dispatch) => {
-//     dispatch(setLocalLatitude(latitude));
-//     dispatch(setLocalLongitude(longitude));
-//   };
-// };
+export default localLocationSlice.reducer;
 
 export const getLocalWeather = (latitude, longitude, apiKey) => {
   return async (dispatch) => {

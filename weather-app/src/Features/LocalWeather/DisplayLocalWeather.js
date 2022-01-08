@@ -1,16 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import classes from "./DisplayLocalWeather.module.css";
-import { getLocalCityWeather } from "../../Redux/LocalCityWeatherSlice/LocalCityWeatherSlice";
+import { getLocalCityWeather } from "../../Redux/slices/LocalCityWeatherSlice";
 import { apiKey } from "../../ApiKey";
 
 const DisplayLocalWeather = () => {
   const dispatch = useDispatch();
-  const { forecast } = useSelector((state) => state.Next5DaysForecast);
+  const { forecast } = useSelector((state) => state.next5DaysForecast);
   const { cityInfo } = useSelector((state) => state.autocomplete);
-  const { LocalWeather } = useSelector((state) => state.LocalWeather);
+  const { LocalWeather } = useSelector((state) => state.localWeather);
   const { currentLocationWeather } = useSelector(
-    (state) => state.LocalLocation
+    (state) => state.localLocation
   );
   const [currentWeather, setCurrentWeather] = useState();
   const [localCityName, setLocalCityName] = useState();

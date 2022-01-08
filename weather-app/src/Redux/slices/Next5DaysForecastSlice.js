@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const Next5DaysForecastSlice = createSlice({
+const next5DaysForecastSlice = createSlice({
   name: "Next5DaysForecast",
   initialState: { forecast: [] },
   reducers: {
@@ -10,8 +10,8 @@ const Next5DaysForecastSlice = createSlice({
   },
 });
 
-export const { getNext5DaysForecast } = Next5DaysForecastSlice.actions;
-export default Next5DaysForecastSlice.reducer;
+export const { getNext5DaysForecast } = next5DaysForecastSlice.actions;
+export default next5DaysForecastSlice.reducer;
 
 export const get5DaysForecast = (value, apiKey) => {
   return async (dispatch) => {

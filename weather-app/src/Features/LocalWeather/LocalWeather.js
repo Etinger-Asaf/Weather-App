@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { apiKey } from "../../ApiKey";
 
-import getLocalWeather from "../../Redux/LocalLocationSlice/LocalLocationSlice";
+import getLocalWeather from "../../Redux/slices/LocalLocationSlice";
 
 const LocalWeather = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const LocalWeather = () => {
     }
   }, [latitude, longitude]);
 
-  const { geoLocation } = useSelector((state) => state.LocalLocation);
+  const { geoLocation } = useSelector((state) => state.localLocation);
   console.log(geoLocation, "geoLocation");
   console.log(latitude, longitude, "log");
 

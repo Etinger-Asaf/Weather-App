@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const Favorite = () => {
-  const { favorites } = useSelector((state) => state.Favorite);
+  const { favorites } = useSelector((state) => state.favorite);
   console.log(favorites, "favorites");
   const favoriteDisplay = favorites.map((item) => {
     return (

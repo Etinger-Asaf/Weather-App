@@ -3,7 +3,7 @@ import Next5DaysForecastDayTime from "./Next5DaysForecastDayTime";
 import { Fragment, useEffect } from "react";
 
 const Next5DaysForecast = (props) => {
-  const { forecast } = useSelector((state) => state.Next5DaysForecast);
+  const { forecast } = useSelector((state) => state.next5DaysForecast);
   const isItDayTime = props.day;
 
   if (!forecast) {

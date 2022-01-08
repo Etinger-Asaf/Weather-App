@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment, useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { sendUserInput } from "../Redux/AutocompleteSlice/AutocompleteSlice";
-import { get5DaysForecast } from "../Redux/Next5daysForecastSlice/Next5DaysForecastSlice";
+import { sendUserInput } from "../Redux/slices/AutocompleteSlice";
+import { get5DaysForecast } from "../Redux/slices/Next5DaysForecastSlice";
 import Next5DaysForecast from "../Features/Next5DaysForecast/Next5DaysForecast";
 import RechartWeather from "../Features/RechartWeather/rechartWeather";
 import LocalWeather from "../Features/LocalWeather/LocalWeather";
@@ -11,19 +11,21 @@ import DisplayLocalWeather from "../Features/LocalWeather/DisplayLocalWeather";
 import classes from "./home.module.css";
 import heart from "../Icons/heart.svg";
 import { apiKey } from "../ApiKey";
-import { userIsClicked } from "../Redux/isUserClickedSlice/isUserClickedSlice";
-import { setAddFavoriteCity } from "../Redux/FavoriteSlice/favoriteSlice";
+import { userIsClicked } from "../Redux/slices/isUserClickedSlice";
+import { setAddFavoriteCity } from "../Redux/slices/favoriteSlice";
 const Home = () => {
+  const dispatch = useDispatch();
+
   const [userInput, setUserInput] = useState("");
   const [citySuggestion, setCitySuggestion] = useState([]);
   const [day, setDays] = useState(true);
-  const dispatch = useDispatch();
-  const { forecast } = useSelector((state) => state.Next5DaysForecast);
 
-  const { citySuggestionArray } = useSelector((state) => state.autocomplete);
-  const { cityInfo } = useSelector((state) => state.autocomplete);
-  const { isClicked } = useSelector((state) => state.IsClicked);
-  const { LocalWeather } = useSelector((state) => state.LocalWeather);
+  const { forecast } = useSelector((state) => state.next5DaysForecast);
+  const { citySuggestionArray, cityInfo } = useSelector(
+    (state) => state.autocomplete
+  );
+  const { isClicked } = useSelector((state) => state.isClicked);
+  const { LocalWeather } = useSelector((state) => state.localWeather);
 
   const setItIsDayTimeHandler = () => {
     setDays(true);

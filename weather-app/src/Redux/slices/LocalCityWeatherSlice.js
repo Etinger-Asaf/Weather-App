@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiKey } from "../../ApiKey";
 
-const LocalCityWeatherSlice = createSlice({
-  name: "LocalCityWeatherSlice",
+const localCityWeatherSlice = createSlice({
+  name: "localCityWeatherSlice",
   initialState: { LocalWeather: null },
   reducers: {
     setLocalWeather: (state, action) => {
@@ -11,8 +11,8 @@ const LocalCityWeatherSlice = createSlice({
   },
 });
 
-export const { setLocalWeather } = LocalCityWeatherSlice.actions;
-export default LocalCityWeatherSlice.reducer;
+export const { setLocalWeather } = localCityWeatherSlice.actions;
+export default localCityWeatherSlice.reducer;
 
 export const getLocalCityWeather = (currentCity, apiKey) => {
   return async (dispatch) => {
