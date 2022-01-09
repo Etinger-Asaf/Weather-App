@@ -26,7 +26,6 @@ const LocalWeather = () => {
 
   useEffect(() => {
     try {
-      console.log(latitude, "latitude", longitude, "longitude");
       if (latitude && longitude) {
         dispatch(getLocalWeather(latitude, longitude, apiKey));
       }
@@ -36,8 +35,6 @@ const LocalWeather = () => {
   }, [latitude, longitude]);
 
   const { geoLocation } = useSelector((state) => state.localLocation);
-  console.log(geoLocation, "geoLocation");
-  console.log(latitude, longitude, "log");
 
   return <p>this is the LocalWeather</p>;
 };

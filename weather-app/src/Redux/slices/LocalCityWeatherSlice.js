@@ -23,7 +23,7 @@ export const getLocalCityWeather = (currentCity, apiKey) => {
 
       const data = await response.json();
       const weatherText = data[0].WeatherText;
-
+      
       dispatch(setLocalWeather(weatherText));
     };
 

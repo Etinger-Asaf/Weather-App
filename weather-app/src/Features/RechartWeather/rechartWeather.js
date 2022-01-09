@@ -25,7 +25,7 @@ const RechartWeather = (props) => {
     >
       <Line type="monotone" dataKey="uv" stroke="#8884d8" />
       <XAxis dataKey="name" dy={12} />
-      <YAxis dx={-7} />
+      <YAxis dx={-7} domain={[-50, 50]} />
     </LineChart>
   );
 

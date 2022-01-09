@@ -40,6 +40,15 @@ const Home = () => {
   };
 
   const onSearchClickHandler = () => {
+    if (!userInput) {
+      return;
+    }
+    dispatch(sendUserInput(userInput));
+
+    if (!citySuggestionArray) {
+      return;
+    }
+    setCitySuggestion(citySuggestionArray);
     console.log(cityInfo, "cityInfo");
     const cityLocationKey = cityInfo.locationKey;
 
@@ -50,6 +59,12 @@ const Home = () => {
     dispatch(get5DaysForecast(cityLocationKey, apiKey));
     dispatch(userIsClicked(true));
   };
+
+  // const localWeatherDisplay = () => {
+  //   if (forecast.length > 0) {
+  //     return <DisplayLocalWeather />;
+  //   }
+  // };
 
   useEffect(() => {
     try {
@@ -66,12 +81,6 @@ const Home = () => {
       console.log(err);
     }
   }, [userInput]);
-
-  const localWeatherDisplay = () => {
-    if (forecast.length > 0) {
-      return <DisplayLocalWeather />;
-    }
-  };
 
   const favoriteHandler = () => {
     // i need the city name today temp and weather text
@@ -117,7 +126,7 @@ const Home = () => {
         )}
       </div>
       <div>
-        {localWeatherDisplay()}
+        {forecast.length > 0 && <DisplayLocalWeather />}
         <div>
           <Next5DaysForecast day={day} />
         </div>

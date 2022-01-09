@@ -19,7 +19,11 @@
 }
 
 .NavLink {
-  color: #551a8b;
+  color: rgb(83, 26, 137);
   font-size: 1.1em;
   text-decoration: none;
+}
+
+.active {
+  border-bottom: rgb(63, 15, 109) 3px solid;
 }

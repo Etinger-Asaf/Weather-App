@@ -23,7 +23,7 @@ export const getLocalWeather = (latitude, longitude, apiKey) => {
         `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude}%2C${longitude}`
       );
       const data = await response.json();
-      console.log(data);
+
       dispatch(setCurrentLocationWeatherData(data));
     };
     try {

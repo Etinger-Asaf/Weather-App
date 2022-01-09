@@ -18,15 +18,11 @@ const DisplayLocalWeather = () => {
 
   const [currentCity, setCurrentCity] = useState();
 
-  console.log(forecast, "forecast");
-  console.log(cityInfo, "cityInfo");
-  console.log(LocalWeather, "LocalWeather");
-
   useEffect(() => {
     try {
       if (cityInfo) {
         const cityLocationKey = cityInfo.locationKey;
-        console.log(cityLocationKey, "cityLocationKey");
+
         dispatch(getLocalCityWeather(cityLocationKey, apiKey));
       }
     } catch (err) {

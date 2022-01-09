@@ -56,12 +56,13 @@
 }
 
 .searchBtn:hover {
-  background-color: rgba(245, 242, 242, 0.883);
+  background-color: rgb(245, 242, 242);
 }
 
 .favoriteBtn {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .favoriteBtn img {

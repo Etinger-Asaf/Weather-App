@@ -7,7 +7,6 @@ const Next5DaysForecast = (props) => {
   const isItDayTime = props.day;
 
   if (!forecast) {
-    console.log(forecast, "forecast is inside the if check");
     return;
   }
 
