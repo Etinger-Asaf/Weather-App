@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiKey } from "../../ApiKey";
 
 const localCityWeatherSlice = createSlice({
   name: "localCityWeatherSlice",
@@ -23,7 +22,7 @@ export const getLocalCityWeather = (currentCity, apiKey) => {
 
       const data = await response.json();
       const weatherText = data[0].WeatherText;
-      
+
       dispatch(setLocalWeather(weatherText));
     };
 

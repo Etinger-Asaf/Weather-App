@@ -9,41 +9,32 @@ const DisplayLocalWeather = () => {
   const { forecast } = useSelector((state) => state.next5DaysForecast);
   const { cityInfo } = useSelector((state) => state.autocomplete);
   const { LocalWeather } = useSelector((state) => state.localWeather);
-  const { currentLocationWeather } = useSelector(
-    (state) => state.localLocation
-  );
+
   const [currentWeather, setCurrentWeather] = useState();
   const [localCityName, setLocalCityName] = useState();
   const [weatherText, setWeatherText] = useState();
 
-  const [currentCity, setCurrentCity] = useState();
+  // useEffect(() => {
+  //   try {
+  //     if (cityInfo) {
+  //       const cityLocationKey = cityInfo.locationKey;
+
+  //       dispatch(getLocalCityWeather(cityLocationKey, apiKey));
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, [cityInfo]);
 
   useEffect(() => {
-    try {
-      if (cityInfo) {
-        const cityLocationKey = cityInfo.locationKey;
-
-        dispatch(getLocalCityWeather(cityLocationKey, apiKey));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }, [cityInfo]);
-
-  useEffect(() => {
-    if (forecast) {
+    if (forecast && cityInfo && LocalWeather) {
       const localTemp = forecast[0].maximumTemp;
       setCurrentWeather(localTemp);
     }
 
-    if (cityInfo) {
-      const cityName = cityInfo.cityName;
-      setLocalCityName(cityName);
-    }
+    setLocalCityName(cityInfo.cityName);
 
-    if (LocalWeather) {
-      setWeatherText(LocalWeather);
-    }
+    setWeatherText(LocalWeather);
   }, [forecast, cityInfo, LocalWeather]);
 
   return (

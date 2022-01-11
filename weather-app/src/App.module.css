@@ -3,7 +3,7 @@
 .app {
   font-family: "Roboto", sans-serif;
   background-image: linear-gradient(rgb(238, 209, 175), rgb(209, 165, 238));
-  height: 100vh;
+  min-height: 100vh;
   color: rgb(44, 44, 44);
   font-size: 1.2rem;
 }

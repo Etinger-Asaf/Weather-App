@@ -32,20 +32,28 @@ export const sendUserInput = (userInput) => {
         `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${userInput}`
       );
       const data = await response.json();
-      const citySuggestionArray = data.map((item) => item.LocalizedName);
+      console.log(data, "data");
 
-      const cityInformation = data.map((item) => ({
-        cityName: item.LocalizedName,
-        id: item.Key,
-        locationKey: item.Key,
-      }));
+      let citySuggestionArray = [];
 
-      const currentCity = cityInformation.find(
-        (item) => item.cityName === userInput
-      );
+      for (let i = 0; i < data.length; i++) {
+        if (citySuggestionArray.includes(data[i].LocalizedName)) {
+          continue;
+        } else {
+          citySuggestionArray.push(data[i].LocalizedName);
+        }
+      }
+      console.log(citySuggestionArray, "citySuggestionArray");
 
+      if (data) {
+        const cityInformation = {
+          cityName: data[0].LocalizedName,
+          id: data[0].Key,
+          locationKey: data[0].Key,
+        };
+        dispatch(setCityInfo(cityInformation));
+      }
       dispatch(setCitySuggestionArray(citySuggestionArray));
-      dispatch(setCityInfo(currentCity));
     };
 
     try {

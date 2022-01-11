@@ -1,8 +1,11 @@
 import classes from "./Next5DaysForecastDayTime.module.css";
+import { useSelector } from "react-redux";
+
 const Next5DaysForecastDayTime = (props) => {
+  const { isItDayTime } = useSelector((state) => state.isItDayTime);
+
   const forecastData = props.forecast;
 
-  const isItDayTime = props.isItDayTime;
   const forecastDisplay = forecastData.map((item) => {
     return (
       <li key={item.id} className={classes.day}>

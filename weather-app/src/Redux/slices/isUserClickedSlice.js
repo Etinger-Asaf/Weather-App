@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const isUserClickedSlice = createSlice({
   name: "isUserClicked",
-  initialState: { isClicked: false },
+  initialState: { isSearchBtnClicked: false },
   reducers: {
     setIsUserClicked: (state, action) => {
-      state.isClicked = action.payload;
+      state.isSearchBtnClicked = action.payload;
     },
   },
 });

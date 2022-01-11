@@ -1,41 +1,28 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { apiKey } from "../../ApiKey";
-
-import getLocalWeather from "../../Redux/slices/localLocationSlice";
+import { useSelector } from "react-redux";
 
 const LocalWeather = () => {
-  const dispatch = useDispatch();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const { todayWeather, currentLocationWeather } = useSelector(
+    (state) => state.localLocation
+  );
 
   useEffect(() => {
-    try {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const getLatitude = position.coords.latitude;
-        const getLongitude = position.coords.longitude;
-        const latitudeFix = getLatitude.toFixed(1);
-        const longitudeFix = getLongitude.toFixed(1);
-        setLatitude(+latitudeFix);
-        setLongitude(+longitudeFix);
-      });
-    } catch (err) {
-      console.log(err);
+    if (!todayWeather) {
+      return;
     }
-  }, []);
+    console.log(todayWeather, "todayWeather");
+  }, [todayWeather]);
 
-  useEffect(() => {
-    try {
-      if (latitude && longitude) {
-        dispatch(getLocalWeather(latitude, longitude, apiKey));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }, [latitude, longitude]);
+  const weatherText = todayWeather[0].WeatherText;
+  const currentWeather = todayWeather[0].Temperature.Metric.value;
 
-  const { geoLocation } = useSelector((state) => state.localLocation);
-
-  return <p>this is the LocalWeather</p>;
+  return (
+    <div className={classes.displayWeatherContainer}>
+      <h3 className={classes.tempHeadline}>
+        {`The Current Weather in ${localCityName}  is ${currentWeather}°C`}
+      </h3>
+      <h1 className={classes.weatherHeadline}>{weatherText}</h1>
+    </div>
+  );
 };
 export default LocalWeather;

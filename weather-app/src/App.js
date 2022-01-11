@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import MainHeader from "./Routes/MainHeader/MainHeader";
-import Home from "./Routes/Home/Home";
-import Favorite from "./Routes/Favorite/Favorite";
+import MainHeader from "./components/MainHeader/MainHeader";
+import Home from "./components/Home/Home";
+import Favorite from "./components/Favorite/Favorite";
 import classes from "./App.module.css";
 function App() {
   return (
