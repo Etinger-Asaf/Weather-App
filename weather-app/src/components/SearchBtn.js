@@ -1,25 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { userIsClicked } from "../Redux/slices/isUserClickedSlice";
-import { get5DaysForecast } from "../Redux/slices/next5DaysForecastSlice";
 import { apiKey } from "../ApiKey";
-import { getLocalCityWeather } from "../Redux/slices/localCityWeatherSlice";
+import { getNext5DaysForecast } from "./WeatherHome/redux/slices/next5DayWeatherSlice";
+import { getCurrentCityWeather } from "./WeatherHome/redux/slices/currentCityWeather";
+import { setCitySuggestionArray } from "./WeatherHome/redux/slices/cityLocationKey";
 import classes from "./Home/Home.module.css";
 
 const SearchBtn = () => {
   const dispatch = useDispatch();
-  const { cityInfo } = useSelector((state) => state.autocomplete);
+  const { cityKey } = useSelector((state) => state.cityLocationKey);
 
   const onSearchClickHandler = () => {
-    console.log(cityInfo, "cityInfo");
 
-    const locationKey = cityInfo.locationKey;
-
-    if (!locationKey) {
+    if (!cityKey) {
       return;
     }
-    dispatch(get5DaysForecast(locationKey, apiKey));
-    dispatch(getLocalCityWeather(locationKey, apiKey));
-    dispatch(userIsClicked(true));
+
+    dispatch(getNext5DaysForecast(cityKey, apiKey));
+    dispatch(getCurrentCityWeather(cityKey, apiKey));
+    dispatch(setCitySuggestionArray([]));
   };
 
   return (

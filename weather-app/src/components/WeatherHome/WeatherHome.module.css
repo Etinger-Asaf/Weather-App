@@ -1,0 +1,21 @@
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  margin: 0.5em;
+  padding: 1em;
+  border-radius: 10px;
+  font-size: 0.9em;
+  font-weight: 700;
+  background-color: rgba(245, 242, 242, 0.596);
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-delay: 0;
+}
+
+.btn:hover {
+  background-color: rgb(245, 242, 242);
+}

@@ -1,15 +1,18 @@
-import { useSelector } from "react-redux";
-import WeatherCard from "../../Templates/weatherCard";
+import { useSelector, useDispatch } from "react-redux";
 import classes from "./Favorite.module.css";
+const Favorite = ({ isItCelsius }) => {
+  const { favoriteCities } = useSelector((state) => state.favoriteCities);
 
-const Favorite = () => {
-  const { favorites } = useSelector((state) => state.favorite);
+  const favoriteCitiesArray = favoriteCities.map((item) => {
+    return (
+      <div key={item.id} className={classes.day}>
+        <h3>{item.cityName}</h3>
+        <h4>{isItCelsius ? item.maxTemp : item.maxTempImperial}</h4>
+        <h4>{item.dayWeatherText}</h4>
+      </div>
+    );
+  });
 
-  return (
-    <div className={classes.container}>
-      <WeatherCard data={favorites} />
-    </div>
-  );
+  return <div className={classes.container}>{favoriteCitiesArray}</div>;
 };
-
 export default Favorite;

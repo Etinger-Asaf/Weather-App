@@ -1,39 +1,57 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setAddFavoriteCity } from "../../Redux/slices/favoriteSlice";
+import {
+  addCity,
+  removeCity,
+} from "../WeatherHome/redux/slices/favoriteCitiesSlice";
 import heart from "../../Icons/heart.svg";
+import redHeart from "../../Icons/redHeart.svg";
 import classes from "../Home/Home.module.css";
 
 const AddFavoriteCity = () => {
   const dispatch = useDispatch();
-  const { LocalWeather } = useSelector((state) => state.localWeather);
-  const { forecast } = useSelector((state) => state.next5DaysForecast);
-  const { cityInfo } = useSelector((state) => state.autocomplete);
 
-  const addingFavoriteCityHandler = () => {
-    if (cityInfo && LocalWeather && forecast) {
-      const favoriteDisplay = {
-        cityName: cityInfo.cityName,
-        id: cityInfo.locationKey,
-        weatherText: LocalWeather,
-        currentTemp: forecast[0].maximumTemp,
-      };
+  const { fiveDaysForecast } = useSelector((state) => state.next5daysForecast);
+  const { cityName } = useSelector((state) => state.cityLocationKey);
+  const { favoriteCities } = useSelector((state) => state.favoriteCities);
 
-      dispatch(setAddFavoriteCity(favoriteDisplay));
-    }
+  if (fiveDaysForecast.length === 0 || !cityName) {
+    return <p></p>;
+  }
+
+  const favoriteCityData = {
+    maxTemp: fiveDaysForecast[0].maxTemp,
+    maxTempImperial: fiveDaysForecast[0].maxTempImperial,
+    dayWeatherText: fiveDaysForecast[0].dayWeatherText,
+    cityName: cityName,
+    id: cityName,
   };
+
+  const isThisCityIsFavorite = favoriteCities
+    .map((item) => item.cityName)
+    .includes(cityName);
 
   return (
     <div>
       {
         <button
           className={classes.favoriteBtn}
-          onClick={addingFavoriteCityHandler}
+          onClick={() => {
+            {
+              !isThisCityIsFavorite
+                ? dispatch(addCity(favoriteCityData))
+                : dispatch(removeCity(favoriteCityData.id));
+            }
+          }}
         >
-          <img src={heart} />
+          <img src={isThisCityIsFavorite ? redHeart : heart} />
         </button>
       }
     </div>
   );
 };
+// {isThisCityIsFavorite ? dispatch(removeCity(item.id) : dispatch(addCity(favoriteCityData))}
 
 export default AddFavoriteCity;
+// onClick={() => {
+//   dispatch(addCity(favoriteCityData));
+// }}
