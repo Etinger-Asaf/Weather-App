@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 
 import SearchBtn from "../SearchBtn";
 import AddFavoriteCity from "../Favorite/AddFavoriteCity";
-// new part
+
 import { getCityLocationKey } from "../WeatherHome/redux/slices/cityLocationKey";
 
 import WeatherHome from "../WeatherHome/WeatherHome";
@@ -51,13 +51,6 @@ const Home = () => {
         />
         <SearchBtn />
         <AddFavoriteCity />
-        {/* {isSearchBtnClicked && <AddFavoriteCity />}
-      </div>
-      <div>
-      {isSearchBtnClicked && <DisplayLocalWeather />}
-      {isSearchBtnClicked && <Next5DaysForecast />}
-      {isSearchBtnClicked && <RechartWeather />}
-    {isSearchBtnClicked && <DayAndNightBtn />} */}
       </div>
       <WeatherHome />
     </Fragment>

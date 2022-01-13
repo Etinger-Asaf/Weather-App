@@ -49,9 +49,5 @@ const AddFavoriteCity = () => {
     </div>
   );
 };
-// {isThisCityIsFavorite ? dispatch(removeCity(item.id) : dispatch(addCity(favoriteCityData))}
 
 export default AddFavoriteCity;
-// onClick={() => {
-//   dispatch(addCity(favoriteCityData));
-// }}

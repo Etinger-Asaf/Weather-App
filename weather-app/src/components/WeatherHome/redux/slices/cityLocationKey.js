@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiKey } from "../../../../ApiKey";
-// this will get the cityName from the geoLocation or the input and will send api request to get the city key
+
 const cityLocationKeySlice = createSlice({
   name: "cityLocationKey",
   initialState: { cityKey: null, citySuggestionArray: [], cityName: null },
