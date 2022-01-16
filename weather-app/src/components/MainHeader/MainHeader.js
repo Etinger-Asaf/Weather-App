@@ -1,35 +1,14 @@
-import { NavLink } from "react-router-dom";
-import classes from "./MainHeader.module.css";
+import NavLinkBtn from "../MainHeader/NavLinkBtn";
+import classes from "../MainHeader/MainHeader.module.css";
+
 const MainHeader = () => {
   return (
     <header className={classes.header}>
       <nav className={classes.navContainer}>
         <h2>Herolo Weather Task</h2>
         <ul className={classes.ulContainer}>
-          <li className={classes.liNavItem}>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? `${classes.NavLink} ${classes.active}`
-                  : `${classes.NavLink}`
-              }
-              to="/home"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className={classes.liNavItem}>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? `${classes.NavLink} ${classes.active}`
-                  : `${classes.NavLink}`
-              }
-              to="/favorite"
-            >
-              Favorite
-            </NavLink>
-          </li>
+          <NavLinkBtn to={"/home"} display={"Home"} />
+          <NavLinkBtn to={"/favorite"} display={"Favorite"} />
         </ul>
       </nav>
     </header>
