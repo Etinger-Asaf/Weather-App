@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, Fragment, useState } from "react";
+import { Fragment, useCallback } from "react";
 import classes from "./Home.module.css";
 
 import Autocomplete from "@mui/material/Autocomplete";
@@ -14,20 +14,28 @@ import WeatherHome from "../WeatherHome/WeatherHome";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [userInput, setUserInput] = useState("");
   const { citySuggestionArray } = useSelector((state) => state.cityLocationKey);
 
-  useEffect(() => {
-    try {
-      if (!userInput) {
-        return;
-      }
+  const debounceFunction = (func, delay) => {
+    let timer;
+    return function () {
+      let self = this;
+      let args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(self, args);
+      }, delay);
+    };
+  };
 
-      dispatch(getCityLocationKey(userInput));
-    } catch (err) {
-      console.log(err);
-    }
-  }, [userInput]);
+  const dispatchingApiRequest = (value) => {
+    dispatch(getCityLocationKey(value));
+  };
+
+  const optimizedFn = useCallback(
+    debounceFunction((value) => dispatchingApiRequest(value), 600),
+    []
+  );
 
   return (
     <Fragment>
@@ -38,7 +46,7 @@ const Home = () => {
           options={citySuggestionArray}
           id="citySearchAutocomplete"
           onInputChange={(event, value) => {
-            setUserInput(value);
+            optimizedFn(value);
           }}
           clearOnBlur
           renderInput={(params) => (
