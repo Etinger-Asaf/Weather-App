@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useCallback } from "react";
 import classes from "./Home.module.css";
-
+import { BallTriangle } from "react-loader-spinner";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import SearchBtn from "../SearchBtn";
 import AddFavoriteCity from "../Favorite/AddFavoriteCity";
 
@@ -15,6 +15,8 @@ import WeatherHome from "../WeatherHome/WeatherHome";
 const Home = () => {
   const dispatch = useDispatch();
   const { citySuggestionArray } = useSelector((state) => state.cityLocationKey);
+  const { hasError } = useSelector((state) => state.hasError);
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   const debounceFunction = (func, delay) => {
     let timer;
@@ -33,7 +35,7 @@ const Home = () => {
   };
 
   const optimizedFn = useCallback(
-    debounceFunction((value) => dispatchingApiRequest(value), 600),
+    debounceFunction((value) => dispatchingApiRequest(value), 500),
     []
   );
 
@@ -48,7 +50,6 @@ const Home = () => {
           onInputChange={(event, value) => {
             optimizedFn(value);
           }}
-          clearOnBlur
           renderInput={(params) => (
             <TextField
               {...params}
@@ -58,9 +59,15 @@ const Home = () => {
           )}
         />
         <SearchBtn />
-        <AddFavoriteCity />
+        {!hasError && <AddFavoriteCity />}
       </div>
-      <WeatherHome />
+      {isLoading && (
+        <div className={classes.loading}>
+          <BallTriangle color="#e602b8" height={80} width={80} />
+        </div>
+      )}
+      <div className={classes.error}>{hasError}</div>
+      {!hasError && <WeatherHome />}
     </Fragment>
   );
 };

@@ -69,3 +69,18 @@
   width: 4em;
   height: 4em;
 }
+
+.error {
+  color: rgb(22, 22, 22);
+  font-weight: bold;
+  margin-top: 1em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
