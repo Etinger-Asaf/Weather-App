@@ -20,7 +20,7 @@ const Next5DaysForecast = ({ next5DaysForecast, isItDayTime, isItCelsius }) => {
           <div key={item.id}>
             <li className={classes.day}>
               <h3>{item.date}</h3>
-              <h4>{temp(item)}</h4>
+              <h4>{`${temp(item)}${isItCelsius ? "°C" : "°F"}`}</h4>
               <h4>
                 {isItDayTime ? item.dayWeatherText : item.nightWeatherText}
               </h4>

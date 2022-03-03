@@ -23,7 +23,7 @@ const WeatherHeadLine = ({ cityName, todayForecast, isItCelsius }) => {
         displayIsItCelsius
           ? todayForecast.tempMetric
           : todayForecast.tempImperial
-      }`}</h3>
+      }${isItCelsius ? "°C" : "°F"}`}</h3>
       <h4
         className={classes.weatherHeadline}
       >{`${displayTodayForecast.weatherText}`}</h4>
